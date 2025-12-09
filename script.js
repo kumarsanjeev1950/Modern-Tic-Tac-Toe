@@ -2,8 +2,11 @@ const cells = document.querySelectorAll(".cell");
 const statusText = document.getElementById("status");
 
 let board = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "X";
 let isGameOver = false;
+
+// ✔ Random start
+let currentPlayer = Math.random() < 0.5 ? "X" : "O";
+statusText.textContent = `Player ${currentPlayer}'s Turn`;
 
 const winPatterns = [
   [0, 1, 2],
@@ -54,8 +57,11 @@ function checkWinner() {
 
 function restartGame() {
   board = ["", "", "", "", "", "", "", "", ""];
-  currentPlayer = "X";
+  // ✔ Random start on restart
+  currentPlayer = Math.random() < 0.5 ? "X" : "O";
   isGameOver = false;
-  statusText.textContent = "Player X's Turn";
+  // ✔ Show correct player
+  statusText.textContent = `Player ${currentPlayer}'s Turn`;
   cells.forEach((cell) => (cell.textContent = ""));
 }
+
